@@ -1,4 +1,7 @@
+import sqlite3
+
 import discord
+from discord.ext import commands
 
 from SECRETS import *
 
@@ -12,8 +15,11 @@ class MyClient(discord.Client):
         if message.author == self.user:
             return
 
-        if message.content == 'ping':
-            await message.channel.send('pong')
+        if message.content.startswith(">>>"):
+            message.content = message.content.replace(">>>", "")
+            guild = message.guild
+            await guild.create_text_channel(name=message.content)
+            await guild.create_voice_channel(name=message.content)
 
 
 client = MyClient()
