@@ -15,11 +15,12 @@ class MyClient(discord.Client):
         if message.author == self.user:
             return
 
-        if message.content.startswith(">>>"):
-            message.content = message.content.replace(">>>", "")
-            guild = message.guild
-            await guild.create_text_channel(name=message.content)
-            await guild.create_voice_channel(name=message.content)
+        if message.content == "wad":
+            await message.content.delete
+            #message.content = message.content.replace(">>>", "")
+            #guild = message.guild
+            #await guild.create_text_channel(name=message.content)
+            #await guild.create_voice_channel(name=message.content)
 
 
 client = MyClient()
